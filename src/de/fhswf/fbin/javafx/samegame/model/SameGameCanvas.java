@@ -18,10 +18,13 @@ public class SameGameCanvas extends Canvas
    };
    
    public SameGameCanvas(SameGameBoard sameGameBoard)
-   {
-      // TODO PARAMS PRÜFEN
-      
+   {  
       this.sameGameBoard = sameGameBoard;
+      
+      if(sameGameBoard == null)
+      {
+         throw new IllegalArgumentException("SameGameBoard darf in Canvas nicht null sein");
+      }
       
       this.setWidth(SCREEN_DIMENSION[0]);
       this.setHeight(SCREEN_DIMENSION[1] - 15);

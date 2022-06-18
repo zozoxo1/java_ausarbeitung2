@@ -6,10 +6,11 @@ import java.util.Optional;
 
 import de.fhswf.fbin.javafx.samegame.listener.SameGameHeightResizeListener;
 import de.fhswf.fbin.javafx.samegame.listener.SameGameWidthResizeListener;
+import de.fhswf.fbin.javafx.samegame.logger.Log;
 import de.fhswf.fbin.javafx.samegame.model.SameGameBoard;
 import de.fhswf.fbin.javafx.samegame.model.SameGameCanvas;
-import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -17,11 +18,11 @@ import javafx.scene.layout.BorderPane;
 public class SameGamePane extends BorderPane
 {
 
-   private SameGameCanvas sameGameCanvas;
-   private SameGameBoard sameGameBoard;
-   private Label blockCountLabel = new Label();
+   private final SameGameCanvas sameGameCanvas;
+   private final SameGameBoard sameGameBoard;
+   private final Label blockCountLabel = new Label();
    
-   public SameGamePane()
+   public SameGamePane() throws IllegalArgumentException
    {
       sameGameBoard = new SameGameBoard();
       sameGameCanvas = new SameGameCanvas(sameGameBoard);
@@ -58,7 +59,19 @@ public class SameGamePane extends BorderPane
    
    public void gameOver()
    {
-      Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+      if(sameGameBoard == null)
+      {
+         throw new IllegalArgumentException("SameGameBoard darf bei gameOver nicht null sein");
+      }
+      
+      // Parameterprüfung
+      if(sameGameCanvas == null)
+      {
+         throw new IllegalArgumentException("SameGameCanvas darf bei gameOver nicht null sein.");
+      }
+      
+      // Zeigen des GameOver screens
+      Alert alert = new Alert(AlertType.CONFIRMATION);
       alert.setTitle("Spiel vorbei");
       alert.setHeaderText("Keine Züge mehr möglich!");
       alert.setContentText((this.sameGameBoard.getRemaining() == 0 ? "Keine Blöcke mehr übrig!" : 
@@ -75,7 +88,7 @@ public class SameGamePane extends BorderPane
       }
       else
       {
-         Platform.exit();
+         Log.closePlatform(getClass().getSimpleName());
       }
    }
    
