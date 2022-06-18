@@ -2,22 +2,26 @@ package de.fhswf.fbin.javafx.samegame.model;
 
 import static de.fhswf.fbin.javafx.samegame.common.Constants.SCREEN_DIMENSION;
 
-import de.fhswf.fbin.javafx.samegame.pane.SameGamePane;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 
 public class SameGameCanvas extends Canvas
 {
 
-   private SameGamePane sameGamePane;
-   private final Color[] blockColors;
+   private SameGameBoard sameGameBoard;
    
-   public SameGameCanvas(SameGamePane sameGamePane, final Color[] blockColors)
+   private final Color[] blockColors = new Color[] {
+         Color.BLACK,
+         Color.RED,
+         Color.BLUE,
+         Color.YELLOW
+   };
+   
+   public SameGameCanvas(SameGameBoard sameGameBoard)
    {
       // TODO PARAMS PRÜFEN
       
-      this.sameGamePane = sameGamePane;
-      this.blockColors = blockColors;
+      this.sameGameBoard = sameGameBoard;
       
       this.setWidth(SCREEN_DIMENSION[0]);
       this.setHeight(SCREEN_DIMENSION[1] - 15);
@@ -28,14 +32,14 @@ public class SameGameCanvas extends Canvas
       this.getGraphicsContext2D().setFill(Color.BLACK);
       this.getGraphicsContext2D().fillRect(0, 0, this.getWidth(), this.getHeight());
       
-      double x = this.getWidth() / sameGamePane.getSameGameBoard().getColumns();
-      double y = this.getHeight() / sameGamePane.getSameGameBoard().getRows();
+      double x = this.getWidth() / sameGameBoard.getColumns();
+      double y = this.getHeight() / sameGameBoard.getRows();
       
-      for(int cols = 0; cols < sameGamePane.getSameGameBoard().getColumns(); cols++)
+      for(int cols = 0; cols < sameGameBoard.getColumns(); cols++)
       {
-         for(int rows = 0; rows < sameGamePane.getSameGameBoard().getRows(); rows++)
+         for(int rows = 0; rows < sameGameBoard.getRows(); rows++)
          {
-            int colorBlock = sameGamePane.getSameGameBoard().getBoardSpace(rows, cols);
+            int colorBlock = sameGameBoard.getBoardSpace(rows, cols);
             
             // if not black, render block
             if(colorBlock > 0)
