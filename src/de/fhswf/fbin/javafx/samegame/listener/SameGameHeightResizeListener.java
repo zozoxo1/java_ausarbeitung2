@@ -5,11 +5,25 @@ import de.fhswf.fbin.javafx.samegame.model.SameGameCanvas;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
+/**
+ * 
+ * Klasse zur Implementierung des Height resize Listeners.
+ *
+ * @author Zoe Günther
+ * @version 1.0
+ *
+ */
 public class SameGameHeightResizeListener implements ChangeListener<Number>
 {
    
    private SameGameCanvas sameGameCanvas;
    
+   /**
+    * Konstruktor zur initialisierung der Parameter
+    * 
+    * @param sameGameCanvas Canvas welcher geresized wird
+    * @throws IllegalArgumentException Parameter sameGameCanvas ist null
+    */
    public SameGameHeightResizeListener(SameGameCanvas sameGameCanvas)
    {
       this.sameGameCanvas = sameGameCanvas;
@@ -20,6 +34,9 @@ public class SameGameHeightResizeListener implements ChangeListener<Number>
       }
    }
 
+   /**
+    * Setzt die neue Höhe des Canvas und rendert es neu
+    */
    @Override
    public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1)
    {

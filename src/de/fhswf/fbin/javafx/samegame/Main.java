@@ -10,7 +10,19 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
 
+/**
+ *
+ * Startet die Application und zeigt das Fenster an. Prüft beim starten auf Fehler.
+ *
+ * @author Zoe Günther
+ * @version 1.0
+ *
+ */
 public class Main extends Application {
+   
+	/**
+	 * Zeigt das Application Fenster an.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {

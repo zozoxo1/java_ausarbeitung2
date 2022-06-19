@@ -15,6 +15,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 
+/**
+ *
+ * Klasse zur implementierung einer BorderPane, worauf das Game stattfindet
+ *
+ * @author Zoe Günther
+ * @version 1.0
+ *
+ */
 public class SameGamePane extends BorderPane
 {
 
@@ -22,6 +30,12 @@ public class SameGamePane extends BorderPane
    private final SameGameBoard sameGameBoard;
    private final Label blockCountLabel = new Label();
    
+   /**
+    * Konstruktor zur implementierung des Games auf dem Pane.
+    * Initialisiert die Listener.
+    * 
+    * @throws IllegalArgumentException Wenn ein Parameter einer Funktion null ist
+    */
    public SameGamePane() throws IllegalArgumentException
    {
       sameGameBoard = new SameGameBoard();
@@ -40,23 +54,42 @@ public class SameGamePane extends BorderPane
       sameGameCanvas.renderBoard();
    }
    
+   /**
+    * Gibt das SameGameCanvas zurück
+    * 
+    * @return SameGameCanvas
+    */
    public SameGameCanvas getSameGameCanvas()
    {
       return sameGameCanvas;
    }
 
 
+   /**
+    * Gibt das SameGameBoard zurück
+    * 
+    * @return SameGameBoard
+    */
    public SameGameBoard getSameGameBoard()
    {
       return sameGameBoard;
    }
 
 
+   /**
+    * Updated den Label Text für die restlichen vorhandenen Blöcke
+    */
    public void updateLabel()
    {
       blockCountLabel.setText("Blöcke vorhanden: " + sameGameBoard.getRemaining());
    }
    
+   /**
+    * Zeigt einen GameOver alert und bei bestätigen eines neuen Spiels wird das Game neu gestartet.
+    * Bei nicht bestätigen eines neuen Spiels wird die Application beendet.
+    * 
+    * @throws IllegalArgumentException board oder canvas ist null
+    */
    public void gameOver()
    {
       if(sameGameBoard == null)
@@ -64,7 +97,6 @@ public class SameGamePane extends BorderPane
          throw new IllegalArgumentException("SameGameBoard darf bei gameOver nicht null sein");
       }
       
-      // Parameterprüfung
       if(sameGameCanvas == null)
       {
          throw new IllegalArgumentException("SameGameCanvas darf bei gameOver nicht null sein.");

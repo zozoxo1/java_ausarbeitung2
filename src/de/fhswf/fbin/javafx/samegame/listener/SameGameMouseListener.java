@@ -4,10 +4,17 @@ import de.fhswf.fbin.javafx.samegame.logger.Log;
 import de.fhswf.fbin.javafx.samegame.model.SameGameBoard;
 import de.fhswf.fbin.javafx.samegame.model.SameGameCanvas;
 import de.fhswf.fbin.javafx.samegame.pane.SameGamePane;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+/**
+ *
+ * Klasse zur Implementierung des Click Listeners.
+ *
+ * @author Zoe Günther
+ * @version 1.0
+ *
+ */
 public class SameGameMouseListener implements EventHandler<MouseEvent>
 {
 
@@ -15,6 +22,14 @@ public class SameGameMouseListener implements EventHandler<MouseEvent>
    private SameGamePane sameGamePane;
    private SameGameBoard sameGameBoard;
    
+   /**
+    * Konstruktor zur initialisierung der Parameter
+    * 
+    * @param sameGamePane GamePane
+    * @throws IllegalArgumentException sameGamePane ist null
+    * @throws IllegalArgumentException sameGameCanvas in sameGamePane ist null
+    * @throws IllegalArgumentException sameGameBoard in sameGamePane ist null
+    */
    public SameGameMouseListener(SameGamePane sameGamePane)
    {
       this.sameGamePane = sameGamePane;
@@ -34,6 +49,10 @@ public class SameGameMouseListener implements EventHandler<MouseEvent>
       }
    }
    
+   /**
+    * Löscht den geclickten block und rendert das Board neu.
+    * Updated das Blocklabel und prüft ob das Spiel vorbei ist nach dem click
+    */
    @Override
    public void handle(MouseEvent event)
    {

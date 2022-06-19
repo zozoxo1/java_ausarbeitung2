@@ -5,6 +5,14 @@ import static de.fhswf.fbin.javafx.samegame.common.Constants.SCREEN_DIMENSION;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 
+/**
+ *
+ * Canvas worauf die Blöcke des Games gezeichnet werden.
+ *
+ * @author Zoe Günther
+ * @version 1.0
+ *
+ */
 public class SameGameCanvas extends Canvas
 {
 
@@ -17,6 +25,12 @@ public class SameGameCanvas extends Canvas
          Color.YELLOW
    };
    
+   /**
+    * Konstruktor zum initialisieren der Parameter
+    * 
+    * @param sameGameBoard Board worauf der Canvas gerendert wird
+    * @throws IllegalArgumentException sameGameBoard ist null
+    */
    public SameGameCanvas(SameGameBoard sameGameBoard)
    {  
       this.sameGameBoard = sameGameBoard;
@@ -30,6 +44,9 @@ public class SameGameCanvas extends Canvas
       this.setHeight(SCREEN_DIMENSION[1] - 15);
    }
    
+   /**
+    * Rendert die Blöcke auf dem Board.
+    */
    public void renderBoard()
    {
       this.getGraphicsContext2D().setFill(Color.BLACK);
